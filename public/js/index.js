@@ -39,7 +39,13 @@ $(document).ready(() => {
         $('.like_btn').click(function () {
             const carItem = $(this).val();
             $.post('/like_car', {carItem:carItem,
-                uid:uid}).done(
+                uid:uid}).done((data)=>{
+                    if(data.message === 'success'){
+                        location.reload();
+                    }else{
+                        location.href= data.data;
+                    }
+                }
             )
         }))
 })
