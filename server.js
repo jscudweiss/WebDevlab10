@@ -159,12 +159,13 @@ app.post('/like_car', (req, res) => {
     if (req.isAuthenticated()) {
         const car = JSON.parse(req.body.carItem);
         const uid = req.body.uid;
+
         User.updateOne(
             {
                 _id: uid,
             },
             {
-                $push: {
+                $addToSet: {
                     favorites: car
                 }
             },
